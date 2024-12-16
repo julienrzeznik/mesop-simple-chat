@@ -1,5 +1,6 @@
 
 import mesop as me
+import time
 
 from uuid import uuid4
 
@@ -25,7 +26,7 @@ def chat_input():
 
         with me.box(style=me.Style(flex_grow=1)):
             me.native_textarea(
-                key="key_chat_input",
+                key=f"chat_input_{str(uuid4())}",
                 value=state.input,
                 placeholder="Enter a prompt",
                 shortcuts={
@@ -55,10 +56,10 @@ async def on_submit(e: me.TextareaShortcutEvent):
     state.input = e.value
     input = state.input
 
-    yield
-    
     state.input = ""
+    
     yield
+
     
     # Get the messages
     messages = state.messages

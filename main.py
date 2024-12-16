@@ -58,7 +58,7 @@ def on_send_rating(e: mel.WebEvent):
     state = me.state(State)
 
     for idx, message in enumerate(state.messages):
-        if message.run_id == e.key:
+        if message.run_id == e.key.split("_")[-1]:
             state.messages[idx+1].rating = full_rating.rating
             state.messages[idx+1].comment = full_rating.comment
 
@@ -114,12 +114,12 @@ def conversation_page():
                         else:
                             model_message(message)
 
-                            # rating_component(
-                            #     rating=message.rating,
-                            #     comment=message.comment,
-                            #     key=message.run_id,
-                            #     on_send_rating=on_send_rating,
-                            # )
+                            rating_component(
+                                rating=message.rating,
+                                comment=message.comment,
+                                key=f"rating_{str(uuid4())}_{message.run_id}",
+                                on_send_rating=on_send_rating,
+                            )
 
 
                     if messages:
@@ -180,7 +180,7 @@ def model_message(message: ChatMessage):
 
             me.markdown(message.content)
             if message.in_progress:
-                me.progress_spinner()
+                me.progress_spinner(key=f"spinner_{str(uuid4())}")
 
 
 
