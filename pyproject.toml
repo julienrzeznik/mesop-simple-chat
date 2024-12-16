@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "standard-chatbot"
+version = "0.1.0"
+description = ""
+authors = ["Julien <julien.rzeznik@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mesop = "^0.12.9"
+gunicorn = "^23.0.0"
+google-cloud-aiplatform = "^1.74.0"
+langgraph = "^0.2.56"
+langchain-google-vertexai = "^2.0.8"
+langchain = "^0.3.10"
+python-dotenv = "^1.0.1"
+langfuse = "^2.56.0"
+debugpy = "^1.8.9"
+firebase-admin = "^6.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
